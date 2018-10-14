@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Component
-public class EndpointObject {
+public class ArticlesResponse {
 
     private String country;
     private String category;

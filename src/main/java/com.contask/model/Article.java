@@ -1,17 +1,17 @@
 package com.contask.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
+public interface Article {
+    String getAuthor();
 
-@Data
-public class Article {
+    String getTitle();
 
-    private Source source;
-    private String author;
-    private String title;
-    private String description;
-    private String url;
-    private String urlToImage;
-    private String publishedAt;
-    private String content;
+    String getDescription();
+
+    String getDate();
+
+    String getSourceName();
+
+    String getArticleUrl();
+
+    String getImageUrl();
 }
