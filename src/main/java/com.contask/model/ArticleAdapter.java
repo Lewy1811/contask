@@ -10,8 +10,8 @@ public class ArticleAdapter implements Article {
     private final ArticleFromNewsApi articleFromNewsApi;
     private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
-    public ArticleAdapter(ArticleFromNewsApi articleFromNewsOrg) {
-        this.articleFromNewsApi = articleFromNewsOrg;
+    public ArticleAdapter(ArticleFromNewsApi articleFromNewApi) {
+        this.articleFromNewsApi = articleFromNewApi;
     }
 
     @Override

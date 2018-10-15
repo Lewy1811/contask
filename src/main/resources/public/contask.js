@@ -1,4 +1,28 @@
 function contentLoad() {
+	var container = appendDivElement("container", document.body);
+	var containerHeading = document.createElement("H1");
+	containerHeading.innerText = "Wiadomości regionalne";
+	container.appendChild(containerHeading);
+	var containerPar = document.createElement("p");
+	containerPar.innerText = "Wybierz kategorię, aby przejść do listy artykułów";
+	container.appendChild(containerPar);
+	appendCategorySelect(document.body);
+}
+
+function appendCategorySelect(targetElement) {
+	var select = document.createElement("select");
+	var categories = getRequestSync("http://localhost:8000/news/categories");
+	for (let i = 0; i < categories.length; i++) {
+		let option = document.createElement("option");
+		option.value = categories[i];
+		option.innerText = option.value;
+		select.appendChild(option);
+	}
+	targetElement.appendChild(select);
+	return select;
+}
+
+function newsLoad() {
 	var restUrl = "http://localhost:8000/news/pl/technology";
 	var response = getRequestSync(restUrl);
 	var container = appendDivElement("container", document.body);
@@ -11,9 +35,13 @@ function contentLoad() {
 	var articles = response.articles;
 	articles.forEach(function(element) {
 		var card = appendDivElement("card", document.body);
-		card.style = "width: 40rem;";
+		card.style = "width: 35rem;";
 		var image = document.createElement("img");
-		image.src = element.imageUrl;
+		if (element.imageUrl != null) {
+			image.src = element.imageUrl;;
+		} else {
+			image.src = "https://www.azfoodandwine.com/wp-content/uploads/2018/03/no_image_available.jpeg"
+		}
 		image.className = "card-img-top";
 		card.appendChild(image);
 		var cardBody = createCardBody(element);

@@ -10,7 +10,7 @@ import java.util.List;
 @Component
 public class ArticlesResponse {
 
-    private String country;
-    private String category;
+    private Country country;
+    private Category category;
     private List<ArticleAdapter> articles = new ArrayList<>();
 }

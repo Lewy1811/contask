@@ -35,6 +35,7 @@ dependencies {
     compileOnly 'org.projectlombok:lombok:1.18.2'
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+//    compile group: 'io.springfox', name: 'springfox-data-rest', version: '2.9.2'
 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")
