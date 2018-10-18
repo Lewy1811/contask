@@ -31,11 +31,9 @@ dependencies {
     compile("org.springframework:spring-web")
     compile("com.fasterxml.jackson.core:jackson-databind")
     compile group: 'org.springframework', name: 'spring-webmvc', version: '5.0.7.RELEASE'
-    compile group: 'org.hibernate', name: 'hibernate-entitymanager', version: '5.2.6.Final'
     compileOnly 'org.projectlombok:lombok:1.18.2'
     compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
     compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-//    compile group: 'io.springfox', name: 'springfox-data-rest', version: '2.9.2'
 
     testCompile("junit:junit")
     testCompile("org.springframework.boot:spring-boot-starter-test")

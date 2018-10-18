@@ -24,8 +24,8 @@ public class RequestController {
 
     @ApiOperation(value = "Returns all news by country and category filters")
     @GetMapping(value = "/{country}/{category}")
-    public ArticlesResponse getArticles(@PathVariable("country") @ApiParam(value = "The 2-letter ISO 3166-1 code of the country you want to get headlines for. Possible options: AE AR AT AU BE BG BR CA CH CN CO CU CZ DE EG FR GB GR HK HU ID IE IL IN IT JP KR LT LV MA MX MY NG NL NO NZ PH PL PT RO RS RU SA SE SG SI SK TH TR TW UA US VE ZA") Country country,
-                                        @PathVariable("category") @ApiParam(value = "The category you want to get headlines for. Possible options: BUSINESS entertainment general health science sports technology") Category category)
+    public ArticlesResponse getArticles(@PathVariable("country") @ApiParam(value = "The 2-letter ISO 3166-1 code of the country you want to get headlines for") Country country,
+                                        @PathVariable("category") @ApiParam(value = "The category you want to get headlines for") Category category)
             throws IllegalArgumentException {
 
         ServiceResponse serviceResponse = articleService.getResponse(ApiEndpoint.TOP_HEADLINES, country, category, firstPageNumber, null);
