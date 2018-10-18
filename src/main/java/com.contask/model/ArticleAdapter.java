@@ -2,13 +2,16 @@ package com.contask.model;
 
 import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+import java.time.LocalDateTime;
+import java.time.ZoneOffset;
 import java.time.format.DateTimeFormatter;
 
 @JsonPropertyOrder({"author", "title", "description", "date", "sourceName", "articleUrl", "imageUrl"})
 public class ArticleAdapter implements Article {
 
     private final ArticleFromNewsApi articleFromNewsApi;
-    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    //From newsapi.org - the date and time that the article was published are in UTC (+000)
+    private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd").withZone(ZoneOffset.UTC);
 
     public ArticleAdapter(ArticleFromNewsApi articleFromNewApi) {
         this.articleFromNewsApi = articleFromNewApi;
@@ -31,7 +34,7 @@ public class ArticleAdapter implements Article {
 
     @Override
     public String getDate() {
-        return articleFromNewsApi.getPublishedAt().format(dateTimeFormatter);
+        return LocalDateTime.parse(articleFromNewsApi.getPublishedAt().substring(0 , 19)).format(dateTimeFormatter);
     }
 
     @Override

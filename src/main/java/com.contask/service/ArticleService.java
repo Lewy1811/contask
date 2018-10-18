@@ -1,5 +1,6 @@
 package com.contask.service;
 
+import com.contask.model.ApiEndpoint;
 import com.contask.model.Category;
 import com.contask.model.Country;
 import com.contask.model.ServiceResponse;
@@ -12,21 +13,45 @@ import org.springframework.web.client.RestTemplate;
 public class ArticleService {
 
     private RestTemplate restTemplate;
+    private String apiKey = "7ad321a024144737968ec200d409dc99";
 
     @Autowired
     public ArticleService(RestTemplateBuilder restTemplateBuilder) {
         this.restTemplate = restTemplateBuilder.build();
     }
 
-    public ServiceResponse getResponse(Country country, Category category) {
-        String url = "https://newsapi.org/v2/top-headlines?";
-        if (country != null) {
-            url = url + "country=" + country.toString() + "&";
+    public ServiceResponse getResponse(ApiEndpoint apiEndpoint, Country country, Category category, int pageNumber, String phrase) {
+        return restTemplate.getForObject(generateUrl(apiEndpoint, country, category, pageNumber, phrase), ServiceResponse.class);
+    }
+
+    public String generateUrl(ApiEndpoint apiEndpoint, Country country, Category category, int pageNumber, String phrase) {
+
+        String url = "https://newsapi.org" + apiEndpoint.getUrlSubstring() + "?";
+        for (int iCase = 0; iCase < 4; iCase++) {
+            if (url.length() > 37 && !url.substring(url.length() - 1).equals("&")) {
+                url += "&";
+            }
+            switch (iCase) {
+                case 0:
+                    if (country != null) {
+                        url += "country=" + country.toString().toLowerCase();
+                    }
+                    break;
+                case 1:
+                    if (category != null) {
+                        url += "category=" + category.toString().toLowerCase();
+                    }
+                    break;
+                case 2:
+                    if (phrase != null) {
+                        url += "q=" + phrase;
+                    }
+                    break;
+                case 3:
+                    url += "page=" + pageNumber + "&apiKey=" + apiKey;
+                    break;
+            }
         }
-        if (category != null) {
-            url = url + "category=" + category.toString() + "&";
-        }
-        url = url + "apiKey=7ad321a024144737968ec200d409dc99";
-        return restTemplate.getForObject(url, ServiceResponse.class);
+        return url;
     }
 }

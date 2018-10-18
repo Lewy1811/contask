@@ -2,8 +2,6 @@ package com.contask.model;
 
 import lombok.Data;
 
-import java.time.LocalDateTime;
-
 @Data
 public class ArticleFromNewsApi {
 
@@ -13,6 +11,6 @@ public class ArticleFromNewsApi {
     private String description;
     private String url;
     private String urlToImage;
-    private LocalDateTime publishedAt;
+    private String publishedAt;
     private String content;
 }

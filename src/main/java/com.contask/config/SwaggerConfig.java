@@ -14,7 +14,7 @@ public class SwaggerConfig {
     @Bean
     public Docket docket() {
         return new Docket(DocumentationType.SWAGGER_2)
-                .tags(new Tag("Request Controller", "This endpoint provides live top and breaking headlines for a country and specific category in a country"))
+                .tags(new Tag("Request Controller", "This endpoint provides live top and breaking headlines for a country and specific category IN a country"))
                 .select()
                 .apis(RequestHandlerSelectors.any())
                 .paths(PathSelectors.any())

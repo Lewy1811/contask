@@ -1,7 +1,6 @@
 package com.contask.model;
 
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +13,6 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertTrue;
 
-//@Ignore
 @RunWith(SpringRunner.class)
 @JsonTest
 public class ArticleAdapterTest {
